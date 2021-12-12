@@ -48,8 +48,8 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
     private Rectangle menuButton;
 
 
-    private BasicStroke borderStoke;
-    private BasicStroke borderStoke_noDashes;
+    private BasicStroke borderStroke;
+    private BasicStroke borderStroke_noDashes;
 
     private Font greetingsFont;
     private Font gameTitleFont;
@@ -81,8 +81,8 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
         startButton = new Rectangle(btnDim);
         menuButton = new Rectangle(btnDim);
 
-        borderStoke = new BasicStroke(BORDER_SIZE,BasicStroke.CAP_ROUND,BasicStroke.JOIN_ROUND,0,DASHES,0);
-        borderStoke_noDashes = new BasicStroke(BORDER_SIZE,BasicStroke.CAP_ROUND,BasicStroke.JOIN_ROUND);
+        borderStroke = new BasicStroke(BORDER_SIZE,BasicStroke.CAP_ROUND,BasicStroke.JOIN_ROUND,0,DASHES,0);
+        borderStroke_noDashes = new BasicStroke(BORDER_SIZE,BasicStroke.CAP_ROUND,BasicStroke.JOIN_ROUND);
 
         greetingsFont = new Font("Noto Mono",Font.PLAIN,25);
         gameTitleFont = new Font("Noto Mono",Font.BOLD,40);
@@ -134,11 +134,11 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
 
         Stroke tmp = g2d.getStroke();
 
-        g2d.setStroke(borderStoke_noDashes);
+        g2d.setStroke(borderStroke_noDashes);
         g2d.setColor(DASH_BORDER_COLOR);
         g2d.draw(menuFace);
 
-        g2d.setStroke(borderStoke);
+        g2d.setStroke(borderStroke);
         g2d.setColor(BORDER_COLOR);
         g2d.draw(menuFace);
 
