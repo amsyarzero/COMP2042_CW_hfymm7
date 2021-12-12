@@ -289,8 +289,7 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
                         gameTimer.start();
                 break;
             case KeyEvent.VK_F1:
-                if(keyEvent.isAltDown() && keyEvent.isShiftDown())
-                    debugConsole.setVisible(true);
+                debugConsole.setVisible(true);
             default:
                 wall.player.stop();
         }
