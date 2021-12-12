@@ -34,7 +34,7 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
     private static final String START_TEXT = "Start";
     private static final String EXIT_TEXT = "Exit";
 
-    private static final Color BG_COLOR = Color.GREEN.darker();
+    private static final Color BG_COLOR = new Color(0, 0, 0 ,0);
     private static final Color BORDER_COLOR = new Color(200,8,21); //Venetian Red
     private static final Color DASH_BORDER_COLOR = new  Color(255, 216, 0);//school bus yellow
     private static final Color TEXT_COLOR = new Color(16, 52, 166);//egyptian blue
@@ -46,7 +46,6 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
     private Rectangle menuFace;
     private Rectangle startButton;
     private Rectangle exitButton;
-
 
     private BasicStroke borderStroke;
     private BasicStroke borderStroke_noDashes;
@@ -60,6 +59,8 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
 
     private boolean startClicked;
     private boolean menuClicked;
+
+    private static final Image backgroundImage = Toolkit.getDefaultToolkit().getImage("src/main/resources/com/amsyar/textures/Menu Background.jpg");
 
 
     public HomeMenu(GameFrame owner,Dimension area){
@@ -127,6 +128,8 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
     }
 
     private void drawContainer(Graphics2D g2d){
+        g2d.drawImage(backgroundImage, -400, -100, this);
+
         Color prev = g2d.getColor();
 
         g2d.setColor(BG_COLOR);
