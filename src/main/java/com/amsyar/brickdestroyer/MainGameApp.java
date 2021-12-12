@@ -20,7 +20,7 @@ package com.amsyar.brickdestroyer;
 import java.awt.*;
 
 
-public class GraphicsMain {
+public class MainGameApp {
 
     public static void main(String[] args){
         EventQueue.invokeLater(() -> new GameFrame().initialize());
