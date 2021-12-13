@@ -2,14 +2,9 @@ package com.amsyar.brickdestroyer;
 
 import java.awt.*;
 import java.awt.Point;
-import java.awt.geom.GeneralPath;
 import java.awt.geom.Point2D;
 import java.util.Random;
 
-/**
- * Created by filippo on 04/09/16.
- *
- */
 public abstract class Brick {
 
     public static final int DEF_CRACK_DEPTH = 1;
@@ -33,7 +28,7 @@ public abstract class Brick {
 
     private boolean broken;
 
-    public Brick(String name, Point pos,Dimension size,Color border,Color inner,int strength) {
+    public Brick(String name, Point pos, Dimension size, Color border, Color inner, int strength) {
 
         rnd = new Random();
         broken = false;
@@ -51,6 +46,7 @@ public abstract class Brick {
 
         if (broken)
             return false;
+
         impact();
         return broken;
 
@@ -66,11 +62,11 @@ public abstract class Brick {
         return inner;
     }
 
-
     public final int findImpact(Ball b) {
 
         if (broken)
             return 0;
+
         int out  = 0;
         if (brickFace.contains(b.right))
             out = LEFT_IMPACT;
@@ -80,6 +76,7 @@ public abstract class Brick {
             out = DOWN_IMPACT;
         else if (brickFace.contains(b.down))
             out = UP_IMPACT;
+
         return out;
 
     }
@@ -103,8 +100,3 @@ public abstract class Brick {
     }
 
 }
-
-
-
-
-

@@ -27,8 +27,8 @@ public class Wall {
     private static final int LEVELS_COUNT = 4;
 
     private static final int CLAY = 1;
-    private static final int STEEL = 2;
-    private static final int CEMENT = 3;
+    private static final int CEMENT = 2;
+    private static final int STEEL = 3;
 
     private Random rnd;
     private Rectangle area;
@@ -111,7 +111,7 @@ public class Wall {
         for(double y = brickHgt;i < tmp.length;i++, y += 2*brickHgt){
             double x = (brickOnLine * brickLen) - (brickLen / 2);
             p.setLocation(x,y);
-            tmp[i] = new ClayBrick(p,brickSize);
+            tmp[i] = new BrickOne(p,brickSize);
         }
         return tmp;
 
@@ -289,13 +289,13 @@ public class Wall {
         Brick out;
         switch(type){
             case CLAY:
-                out = new ClayBrick(point,size);
+                out = new BrickOne(point,size);
                 break;
             case STEEL:
-                out = new SteelBrick(point,size);
+                out = new BrickThree(point,size);
                 break;
             case CEMENT:
-                out = new CementBrick(point, size);
+                out = new BrickTwo(point, size);
                 break;
             default:
                 throw  new IllegalArgumentException(String.format("Unknown Type:%d\n",type));
