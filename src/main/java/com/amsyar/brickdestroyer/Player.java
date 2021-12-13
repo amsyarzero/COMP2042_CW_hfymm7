@@ -1,6 +1,6 @@
 /*
  *  Brick Destroy - A simple Arcade video game
- *   Copyright (C) 2017  Filippo Ranza
+ *   Copyright (C) 2021 amsyarzero
  *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -19,24 +19,22 @@ package com.amsyar.brickdestroyer;
 
 import java.awt.*;
 
-
 public class Player {
 
-
-    public static final Color BORDER_COLOR = Color.GREEN.darker().darker();
-    public static final Color INNER_COLOR = Color.GREEN;
+    public static final Color BORDER_COLOR = Color.BLACK;
+    public static final Color INNER_COLOR = Color.BLACK;
 
     private static final int DEF_MOVE_AMOUNT = 5;
 
     private Rectangle playerFace;
-    private Point ballPoint;
+    private Point initPlayerPos;
     private int moveAmount;
     private int min;
     private int max;
 
+    public Player(Point initPlayerPos, int width, int height, Rectangle container) {
 
-    public Player(Point ballPoint,int width,int height,Rectangle container) {
-        this.ballPoint = ballPoint;
+        this.initPlayerPos = initPlayerPos;
         moveAmount = 0;
         playerFace = makeRectangle(width, height);
         min = container.x + (width / 2);
@@ -44,41 +42,49 @@ public class Player {
 
     }
 
-    private Rectangle makeRectangle(int width,int height){
-        Point p = new Point((int)(ballPoint.getX() - (width / 2)),(int)ballPoint.getY());
+    private Rectangle makeRectangle(int width, int height) {
+
+        Point p = new Point((int)(initPlayerPos.getX() - (width / 2)),(int)initPlayerPos.getY());
         return  new Rectangle(p,new Dimension(width,height));
+
     }
 
-    public boolean impact(Ball b){
+    public boolean impact(Ball b) {
         return playerFace.contains(b.getPosition()) && playerFace.contains(b.down) ;
     }
 
-    public void move(){
-        double x = ballPoint.getX() + moveAmount;
-        if(x < min || x > max)
+    public void movePaddle() {
+
+        double x = initPlayerPos.getX() + moveAmount;
+
+        if (x < min || x > max)
             return;
-        ballPoint.setLocation(x,ballPoint.getY());
-        playerFace.setLocation(ballPoint.x - (int)playerFace.getWidth()/2,ballPoint.y);
+
+        initPlayerPos.setLocation(x,initPlayerPos.getY());
+        playerFace.setLocation(initPlayerPos.x - (int)playerFace.getWidth()/2,initPlayerPos.y);
+
     }
 
-    public void moveLeft(){
+    public void moveLeft() {
         moveAmount = -DEF_MOVE_AMOUNT;
     }
 
-    public void movRight(){
+    public void moveRight() {
         moveAmount = DEF_MOVE_AMOUNT;
     }
 
-    public void stop(){
+    public void stop() {
         moveAmount = 0;
     }
 
-    public Shape getPlayerFace(){
+    public Shape getPlayerFace() {
         return  playerFace;
     }
 
-    public void moveTo(Point p){
-        ballPoint.setLocation(p);
-        playerFace.setLocation(ballPoint.x - (int)playerFace.getWidth()/2,ballPoint.y);
+    public void moveTo(Point p) {
+
+        initPlayerPos.setLocation(p);
+        playerFace.setLocation(initPlayerPos.x - (int)playerFace.getWidth()/2,initPlayerPos.y);
+
     }
 }

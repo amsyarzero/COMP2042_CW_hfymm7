@@ -176,7 +176,7 @@ public class Wall {
     }
 
     public void move(){
-        player.move();
+        player.movePaddle();
         ball.move();
     }
 
