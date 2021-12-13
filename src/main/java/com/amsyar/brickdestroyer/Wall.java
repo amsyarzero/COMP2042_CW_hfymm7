@@ -72,7 +72,7 @@ public class Wall {
             speedY = -rnd.nextInt(3);
         } while(speedY == 0);
 
-        ball.setSpeed(speedX,speedY);
+        ball.setInitVelocity(speedX,speedY);
 
         player = new Player((Point) ballPos.clone(),150,10, drawArea);
 
@@ -200,7 +200,7 @@ public class Wall {
     public void move() {
 
         player.movePaddle();
-        ball.move();
+        ball.moveBall();
 
     }
 
@@ -234,18 +234,18 @@ public class Wall {
                 //Vertical Impact
                 case Brick.UP_IMPACT:
                     ball.reverseY();
-                    return b.setImpact(ball.down, crack.UP);
+                    return b.trackForImpact(ball.down, crack.UP);
                 case Brick.DOWN_IMPACT:
                     ball.reverseY();
-                    return b.setImpact(ball.up, crack.DOWN);
+                    return b.trackForImpact(ball.up, crack.DOWN);
 
                 //Horizontal Impact
                 case Brick.LEFT_IMPACT:
                     ball.reverseX();
-                    return b.setImpact(ball.right, crack.RIGHT);
+                    return b.trackForImpact(ball.right, crack.RIGHT);
                 case Brick.RIGHT_IMPACT:
                     ball.reverseX();
-                    return b.setImpact(ball.left, crack.LEFT);
+                    return b.trackForImpact(ball.left, crack.LEFT);
 
             }
 
@@ -288,7 +288,7 @@ public class Wall {
             speedY = -rnd.nextInt(3);
         } while(speedY == 0);
 
-        ball.setSpeed(speedX,speedY);
+        ball.setInitVelocity(speedX,speedY);
         ballLost = false;
 
     }

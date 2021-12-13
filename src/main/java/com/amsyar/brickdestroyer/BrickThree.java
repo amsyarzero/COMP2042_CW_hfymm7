@@ -52,11 +52,11 @@ public class BrickThree extends Brick {
 
     public boolean setImpact(Point2D point , int dir) {
 
-        if(super.isBroken())
+        if(super.isBrickBroken())
             return false;
 
         impact();
-        return super.isBroken();
+        return super.isBrickBroken();
 
     }
 

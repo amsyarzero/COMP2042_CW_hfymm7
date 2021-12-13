@@ -33,13 +33,13 @@ public class BrickFour extends Brick {
     }
 
     @Override
-    public boolean setImpact(Point2D point, int dir) {
+    public boolean trackForImpact(Point2D point, int dir) {
 
-        if(super.isBroken())
+        if(super.isBrickBroken())
             return false;
 
         super.impact();
-        if(!super.isBroken()) {
+        if(!super.isBrickBroken()) {
 
             crack.makeCrack(point,dir);
             updateBrick();
@@ -56,7 +56,7 @@ public class BrickFour extends Brick {
         if(rnd.nextDouble() < TOUGH_PROBABILITY) {
 
             super.impact();
-            if(!super.isBroken()) {
+            if(!super.isBrickBroken()) {
 
                 crack.makeCrack(point,dir);
                 updateBrick();
@@ -82,7 +82,7 @@ public class BrickFour extends Brick {
 
     private void updateBrick() {
 
-        if(!super.isBroken()) {
+        if(!super.isBrickBroken()) {
 
             GeneralPath gp = crack.draw();
             gp.append(super.brickFace,false);

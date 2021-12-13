@@ -96,7 +96,7 @@ public class DebugConsole extends JDialog implements WindowListener{
         setLocation();
         Ball b = wall.ball;
 
-        debugPanel.setValues(b.getSpeedX(),b.getSpeedY());
+        debugPanel.setValues(b.getXVelocity(),b.getYVelocity());
 
     }
 
