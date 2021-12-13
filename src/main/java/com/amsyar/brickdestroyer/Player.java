@@ -19,6 +19,10 @@ package com.amsyar.brickdestroyer;
 
 import java.awt.*;
 
+/**
+ * edited by amsyarzero
+ * 13/12/2021
+ */
 public class Player {
 
     public static final Color BORDER_COLOR = Color.BLACK;
@@ -32,6 +36,13 @@ public class Player {
     private int min;
     private int max;
 
+    /**
+     * @param initPlayerPos
+     * @param width
+     * @param height
+     * @param container
+     * defines attribute of the paddle controlled by the player
+     */
     public Player(Point initPlayerPos, int width, int height, Rectangle container) {
 
         this.initPlayerPos = initPlayerPos;
@@ -42,6 +53,12 @@ public class Player {
 
     }
 
+    /**
+     * @param width
+     * @param height
+     * @return
+     * draw paddle
+     */
     private Rectangle makeRectangle(int width, int height) {
 
         Point p = new Point((int)(initPlayerPos.getX() - (width / 2)),(int)initPlayerPos.getY());
@@ -49,10 +66,18 @@ public class Player {
 
     }
 
-    public boolean impact(Ball b) {
+    /**
+     * @param b
+     * @return
+     * if ball hits paddle, return true
+     */
+    public boolean impactOnPlayer(Ball b) {
         return playerFace.contains(b.getPosition()) && playerFace.contains(b.down) ;
     }
 
+    /**
+     * moves paddle by this amount, and stops paddle from crossing the window border
+     */
     public void movePaddle() {
 
         double x = initPlayerPos.getX() + moveAmount;
@@ -65,22 +90,39 @@ public class Player {
 
     }
 
+    /**
+     * move paddle by -5 horizontally
+     */
     public void moveLeft() {
         moveAmount = -DEF_MOVE_AMOUNT;
     }
 
+    /**
+     * move paddle by 5 horizontally
+     */
     public void moveRight() {
         moveAmount = DEF_MOVE_AMOUNT;
     }
 
+    /**
+     * stops the paddle
+     */
     public void stop() {
         moveAmount = 0;
     }
 
+    /**
+     * @return
+     * gets paddle shape
+     */
     public Shape getPlayerFace() {
         return  playerFace;
     }
 
+    /**
+     * @param p
+     * move paddle to a specified position
+     */
     public void moveTo(Point p) {
 
         initPlayerPos.setLocation(p);

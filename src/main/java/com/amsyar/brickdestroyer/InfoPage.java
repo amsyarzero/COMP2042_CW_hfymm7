@@ -1,3 +1,20 @@
+/*
+ *  Brick Destroy - A simple Arcade video game
+ *   Copyright (C) 2021 amsyarzero
+ *
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 package com.amsyar.brickdestroyer;
 
 import javax.swing.*;
@@ -8,6 +25,10 @@ import java.awt.event.MouseMotionListener;
 import java.awt.font.FontRenderContext;
 import java.awt.geom.Rectangle2D;
 
+/**
+ * edited by amsyarzero
+ * 13/12/2021
+ */
 public class InfoPage extends JComponent implements MouseListener, MouseMotionListener {
 
     private static final String INFO_LINE_1 = "SPACE to start/pause the game";
@@ -34,7 +55,12 @@ public class InfoPage extends JComponent implements MouseListener, MouseMotionLi
 
     private static final Image backgroundImage = Toolkit.getDefaultToolkit().getImage("src/main/resources/com/amsyar/textures/Menu Background.jpg");
 
-
+    /**
+     * @param owner
+     * @param area
+     * defines attribute of info page
+     * Info page is a clone of the menu page, so its methods are similar to MenuPage
+     */
     public InfoPage(GameFrame owner, Dimension area) {
 
         this.setFocusable(true);
@@ -60,11 +86,19 @@ public class InfoPage extends JComponent implements MouseListener, MouseMotionLi
     }
 
 
+    /**
+     * @param g
+     * creates menu over InfoPage
+     */
     public void paint(Graphics g) {
         drawMenu((Graphics2D)g);
     }
 
 
+    /**
+     * @param g2d
+     * draws the elements in info page
+     */
     public void drawMenu(Graphics2D g2d) {
 
         drawContainer(g2d);
@@ -93,6 +127,10 @@ public class InfoPage extends JComponent implements MouseListener, MouseMotionLi
 
     }
 
+    /**
+     * @param g2d
+     * sets colours and background image
+     */
     private void drawContainer(Graphics2D g2d) {
 
         g2d.drawImage(backgroundImage, -400, -100, this);
@@ -118,6 +156,10 @@ public class InfoPage extends JComponent implements MouseListener, MouseMotionLi
 
     }
 
+    /**
+     * @param g2d
+     * draws text in their respective fonts and colours
+     */
     private void drawText(Graphics2D g2d) {
 
         g2d.setColor(MenuPage.TEXT_COLOR);
@@ -157,6 +199,10 @@ public class InfoPage extends JComponent implements MouseListener, MouseMotionLi
 
     }
 
+    /**
+     * @param g2d
+     * draws buttons in their shapes and positions
+     */
     private void drawButton(Graphics2D g2d) {
 
         FontRenderContext frc = g2d.getFontRenderContext();
@@ -199,6 +245,10 @@ public class InfoPage extends JComponent implements MouseListener, MouseMotionLi
 
     }
 
+    /**
+     * @param mouseEvent
+     * if back button is clicked, go back to menu
+     */
     @Override
     public void mouseClicked(MouseEvent mouseEvent) {
 
@@ -209,6 +259,10 @@ public class InfoPage extends JComponent implements MouseListener, MouseMotionLi
 
     }
 
+    /**
+     * @param mouseEvent
+     * changes colour of buttons when pressed
+     */
     @Override
     public void mousePressed(MouseEvent mouseEvent) {
 
@@ -223,6 +277,10 @@ public class InfoPage extends JComponent implements MouseListener, MouseMotionLi
 
     }
 
+    /**
+     * @param mouseEvent
+     * changes button colour to normal once mouse is released
+     */
     @Override
     public void mouseReleased(MouseEvent mouseEvent) {
 
@@ -235,22 +293,35 @@ public class InfoPage extends JComponent implements MouseListener, MouseMotionLi
 
     }
 
+    /**
+     * @param mouseEvent
+     */
     @Override
     public void mouseEntered(MouseEvent mouseEvent) {
 
     }
 
+    /**
+     * @param mouseEvent
+     */
     @Override
     public void mouseExited(MouseEvent mouseEvent) {
 
     }
 
 
+    /**
+     * @param mouseEvent
+     */
     @Override
     public void mouseDragged(MouseEvent mouseEvent) {
 
     }
 
+    /**
+     * @param mouseEvent
+     * changes cursor icon when hovering over clickable items
+     */
     @Override
     public void mouseMoved(MouseEvent mouseEvent) {
 

@@ -21,16 +21,31 @@ import java.awt.*;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Point2D;
 
-public class RubberBall extends Ball {
+/**
+ * edited by amsyarzero
+ * 13/12/2021
+ */
+public class BlackBall extends Ball {
 
     private static final int DEF_RADIUS = 10;
     private static final Color DEF_INNER_COLOR = Color.BLACK;
     private static final Color DEF_BORDER_COLOR = Color.BLACK;
 
-    public RubberBall(Point2D center) {
+    /**
+     * @param center
+     * defines attribute of ball being used in the game
+     */
+    public BlackBall(Point2D center) {
         super(center, DEF_RADIUS, DEF_RADIUS, DEF_INNER_COLOR, DEF_BORDER_COLOR);
     }
 
+    /**
+     * @param center
+     * @param radiusA
+     * @param radiusB
+     * @return
+     * creates the ball with the specified settings
+     */
     @Override
     protected Shape makeBall(Point2D center, int radiusA, int radiusB) {
 

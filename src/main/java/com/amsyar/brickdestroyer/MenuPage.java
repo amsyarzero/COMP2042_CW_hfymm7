@@ -25,7 +25,10 @@ import java.awt.event.MouseMotionListener;
 import java.awt.font.FontRenderContext;
 import java.awt.geom.Rectangle2D;
 
-
+/**
+ * edited by amsyarzero
+ * 13/12/2021
+ */
 public class MenuPage extends JComponent implements MouseListener, MouseMotionListener {
 
     private static final String GREETINGS = "Welcome to";
@@ -65,7 +68,11 @@ public class MenuPage extends JComponent implements MouseListener, MouseMotionLi
 
     private final Image backgroundImage = Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("/com/amsyar/textures/Menu Background.jpg"));
 
-
+    /**
+     * @param owner
+     * @param area
+     * defines attribute of menu page
+     */
     public MenuPage(GameFrame owner, Dimension area) {
 
         this.setFocusable(true);
@@ -95,11 +102,19 @@ public class MenuPage extends JComponent implements MouseListener, MouseMotionLi
     }
 
 
+    /**
+     * @param g
+     * creates menu over InfoPage
+     */
     public void paint(Graphics g) {
         drawMenu((Graphics2D)g);
     }
 
 
+    /**
+     * @param g2d
+     * draws the elements in menu page
+     */
     public void drawMenu(Graphics2D g2d) {
 
         drawContainer(g2d);
@@ -128,6 +143,10 @@ public class MenuPage extends JComponent implements MouseListener, MouseMotionLi
 
     }
 
+    /**
+     * @param g2d
+     * sets colours and background image
+     */
     private void drawContainer(Graphics2D g2d) {
 
         g2d.drawImage(backgroundImage, -400, -100, this);
@@ -153,6 +172,10 @@ public class MenuPage extends JComponent implements MouseListener, MouseMotionLi
 
     }
 
+    /**
+     * @param g2d
+     * draws text in their respective fonts and colours
+     */
     private void drawText(Graphics2D g2d) {
 
         g2d.setColor(TEXT_COLOR);
@@ -185,6 +208,10 @@ public class MenuPage extends JComponent implements MouseListener, MouseMotionLi
 
     }
 
+    /**
+     * @param g2d
+     * draws buttons in their shapes and positions
+     */
     private void drawButton(Graphics2D g2d) {
 
         FontRenderContext frc = g2d.getFontRenderContext();
@@ -289,6 +316,12 @@ public class MenuPage extends JComponent implements MouseListener, MouseMotionLi
 
     }
 
+    /**
+     * @param mouseEvent
+     * if play button is clicked, go to game
+     * if info button is clicked, go to info page
+     * if exit button is clicked, close game
+     */
     @Override
     public void mouseClicked(MouseEvent mouseEvent) {
 
@@ -306,6 +339,10 @@ public class MenuPage extends JComponent implements MouseListener, MouseMotionLi
         }
     }
 
+    /**
+     * @param mouseEvent
+     * changes colour of buttons when pressed
+     */
     @Override
     public void mousePressed(MouseEvent mouseEvent) {
 
@@ -329,6 +366,10 @@ public class MenuPage extends JComponent implements MouseListener, MouseMotionLi
         }
     }
 
+    /**
+     * @param mouseEvent
+     * changes button colour to normal once mouse is released
+     */
     @Override
     public void mouseReleased(MouseEvent mouseEvent) {
         if (playClicked) {
@@ -349,22 +390,35 @@ public class MenuPage extends JComponent implements MouseListener, MouseMotionLi
         }
     }
 
+    /**
+     * @param mouseEvent
+     */
     @Override
     public void mouseEntered(MouseEvent mouseEvent) {
 
     }
 
+    /**
+     * @param mouseEvent
+     */
     @Override
     public void mouseExited(MouseEvent mouseEvent) {
 
     }
 
 
+    /**
+     * @param mouseEvent
+     */
     @Override
     public void mouseDragged(MouseEvent mouseEvent) {
 
     }
 
+    /**
+     * @param mouseEvent
+     * changes cursor icon when hovering over clickable items
+     */
     @Override
     public void mouseMoved(MouseEvent mouseEvent) {
 

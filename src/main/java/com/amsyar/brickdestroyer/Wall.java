@@ -1,6 +1,6 @@
 /*
  *  Brick Destroy - A simple Arcade video game
- *   Copyright (C) 2017  Filippo Ranza
+ *   Copyright (C) 2021 amsyarzero
  *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -21,6 +21,10 @@ import java.awt.*;
 import java.awt.geom.Point2D;
 import java.util.Random;
 
+/**
+ * edited by amsyarzero
+ * 13/12/2021
+ */
 public class Wall {
 
     private static final int LEVELS_COUNT = 5;
@@ -47,9 +51,17 @@ public class Wall {
 
     private Crack crack;
     
-    private int speedX;
-    private int speedY;
+    private int velocityX;
+    private int velocityY;
 
+    /**
+     * @param drawArea
+     * @param brickTotal
+     * @param lineTotal
+     * @param brickDimensionRatio
+     * @param ballPos
+     * defines attribute for "drawing" area, brick total, brick rows, brick ratio, and ball + paddle initial position
+     */
     public Wall(Rectangle drawArea, int brickTotal, int lineTotal, double brickDimensionRatio, Point ballPos) {
 
         this.startPoint = new Point(ballPos);
@@ -65,14 +77,14 @@ public class Wall {
         makeBall(ballPos);
         
         do {
-            speedX = rnd.nextInt(5) - 2;
-        } while(speedX == 0);
+            velocityX = rnd.nextInt(5) - 2;
+        } while(velocityX == 0);
         
         do {
-            speedY = -rnd.nextInt(3);
-        } while(speedY == 0);
+            velocityY = -rnd.nextInt(3);
+        } while(velocityY == 0);
 
-        ball.setInitVelocity(speedX,speedY);
+        ball.setInitVelocity(velocityX, velocityY);
 
         player = new Player((Point) ballPos.clone(),150,10, drawArea);
 
@@ -80,6 +92,15 @@ public class Wall {
         
     }
 
+    /**
+     * @param drawArea
+     * @param brickTotal
+     * @param lineTotal
+     * @param brickSizeRatio
+     * @param type
+     * @return
+     * make brick layout for single types only (Brick One and Brick of Hell)
+     */
     private Brick[] makeSingleTypeLevel(Rectangle drawArea, int brickTotal, int lineTotal, double brickSizeRatio, int type) {
         /*
           if brickTotal is not divisible by line count,brickTotal is adjusted to the biggest
@@ -127,6 +148,16 @@ public class Wall {
 
     }
 
+    /**
+     * @param drawArea
+     * @param brickTotal
+     * @param lineTotal
+     * @param brickSizeRatio
+     * @param typeA
+     * @param typeB
+     * @return
+     * make mixed bricks layout (Brick Two, Brick Three)
+     */
     private Brick[] makeChessboardLevel(Rectangle drawArea, int brickTotal, int lineTotal, double brickSizeRatio, int typeA, int typeB) {
         /*
           if brickTotal is not divisible by line count,brickTotal is adjusted to the biggest
@@ -180,8 +211,12 @@ public class Wall {
 
     }
 
+    /**
+     * @param ballPos
+     * creates the ball at starting position
+     */
     private void makeBall(Point2D ballPos) {
-        ball = new RubberBall(ballPos);
+        ball = new BlackBall(ballPos);
     }
 
     private Brick[][] makeLevels(Rectangle drawArea,int brickTotal,int lineTotal,double brickDimensionRatio) {
@@ -191,12 +226,15 @@ public class Wall {
         tmp[1] = makeChessboardLevel(drawArea,brickTotal,lineTotal,brickDimensionRatio,CLAY,CEMENT);
         tmp[2] = makeChessboardLevel(drawArea,brickTotal,lineTotal,brickDimensionRatio,CLAY,STEEL);
         tmp[3] = makeChessboardLevel(drawArea,brickTotal,lineTotal,brickDimensionRatio,STEEL,CEMENT);
-        tmp[4] = makeChessboardLevel(drawArea,brickTotal,lineTotal,brickDimensionRatio,HELLRISE,HELLRISE);
+        tmp[4] = makeSingleTypeLevel(drawArea,brickTotal,lineTotal,brickDimensionRatio,HELLRISE);
 
         return tmp;
 
     }
 
+    /**
+     * calls methods to move paddle and ball
+     */
     public void move() {
 
         player.movePaddle();
@@ -204,9 +242,13 @@ public class Wall {
 
     }
 
+    /**
+     * if paddle and ball collide, reverse y velocity of ball
+     * if ball collides with brick, reverse either x or y velocity of ball depending on brick surface
+     */
     public void findImpacts() {
 
-        if(player.impact(ball)) {
+        if(player.impactOnPlayer(ball)) {
             ball.reverseY();
         } else if(impactWall()) {
             /*for efficiency reverse is done into method impactWall
@@ -226,6 +268,10 @@ public class Wall {
 
     }
 
+    /**
+     * @return
+     * changes ball direction when colliding with a brick, determined by the brick surface orientation
+     */
     private boolean impactWall() {
 
         for(Brick b : bricks) {
@@ -255,6 +301,10 @@ public class Wall {
 
     }
 
+    /**
+     * @return
+     * changes ball direction when it hits window border
+     */
     private boolean impactBorder() {
 
         Point2D p = ball.getPosition();
@@ -262,18 +312,34 @@ public class Wall {
 
     }
 
+    /**
+     * @return
+     * returns remaining brick total
+     */
     public int getBrickTotal() {
         return brickTotal;
     }
 
+    /**
+     * @return
+     * returns remaining chances to play
+     */
     public int getBallCount() {
         return ballCount;
     }
 
+    /**
+     * @return
+     * if ball is lost, return true, else false
+     */
     public boolean isBallLost() {
         return ballLost;
     }
 
+    /**
+     * resets ball and paddle to their initial positions
+     * sets random velocity for ball
+     */
     public void ballReset() {
 
         player.moveTo(startPoint);
@@ -293,6 +359,10 @@ public class Wall {
 
     }
 
+    /**
+     * all bricks will be repaired
+     * brick count and ball count will be reset
+     */
     public void wallReset() {
 
         for(Brick b : bricks)
@@ -303,14 +373,24 @@ public class Wall {
 
     }
 
+    /**
+     * @return
+     */
     public boolean ballEnd() {
         return ballCount == 0;
     }
 
+    /**
+     * @return
+     * if no more bricks are remaining, level is done
+     */
     public boolean isDone() {
         return brickTotal == 0;
     }
 
+    /**
+     * changes bricks to next level's bricks and reset brick count when level is done
+     */
     public void nextLevel() {
 
         bricks = levels[level++];
@@ -318,14 +398,28 @@ public class Wall {
 
     }
 
+    /**
+     * @return
+     * if there are still more levels, return true
+     */
     public boolean hasLevel() {
         return level < levels.length;
     }
 
+    /**
+     * resets ball count to default value
+     */
     public void resetBallCount() {
         ballCount = 3;
     }
 
+    /**
+     * @param point
+     * @param size
+     * @param type
+     * @return
+     * gets the kind of brick
+     */
     private Brick makeBrick(Point point, Dimension size, int type) {
 
         Brick out;
