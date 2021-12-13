@@ -28,8 +28,8 @@ public class GameFrame extends JFrame implements WindowFocusListener {
     private static final String DEF_TITLE = "Brick Destroy";
 
     private GameBoard gameBoard;
-    private HomeMenu homeMenu;
-    private InfoBoard infoBoard;
+    private MenuPage menuPage;
+    private InfoPage infoPage;
 
     private boolean gaming;
 
@@ -42,10 +42,10 @@ public class GameFrame extends JFrame implements WindowFocusListener {
 
         gameBoard = new GameBoard(this);
 
-        homeMenu = new HomeMenu(this,new Dimension(640,480));
-        infoBoard = new InfoBoard(this,new Dimension(640,480));
+        menuPage = new MenuPage(this,new Dimension(640,480));
+        infoPage = new InfoPage(this,new Dimension(640,480));
 
-        this.add(homeMenu,BorderLayout.CENTER);
+        this.add(menuPage,BorderLayout.CENTER);
 
         this.setUndecorated(true);
 
@@ -63,7 +63,7 @@ public class GameFrame extends JFrame implements WindowFocusListener {
     public void enableGameBoard() {
 
         this.dispose();
-        this.remove(homeMenu);
+        this.remove(menuPage);
         this.add(gameBoard, BorderLayout.CENTER);
         this.setUndecorated(false);
         initialize();
@@ -76,8 +76,8 @@ public class GameFrame extends JFrame implements WindowFocusListener {
     public void enableInfoBoard() {
 
         this.dispose();
-        this.remove(homeMenu);
-        this.add(infoBoard, BorderLayout.CENTER);
+        this.remove(menuPage);
+        this.add(infoPage, BorderLayout.CENTER);
         this.setUndecorated(true);
         initialize();
 
@@ -86,8 +86,8 @@ public class GameFrame extends JFrame implements WindowFocusListener {
     public void enableHomeMenu() {
 
         this.dispose();
-        this.remove(infoBoard);
-        this.add(homeMenu, BorderLayout.CENTER);
+        this.remove(infoPage);
+        this.add(menuPage, BorderLayout.CENTER);
         this.setUndecorated(true);
         initialize();
 

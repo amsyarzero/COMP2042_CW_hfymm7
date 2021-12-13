@@ -8,7 +8,7 @@ import java.awt.event.MouseMotionListener;
 import java.awt.font.FontRenderContext;
 import java.awt.geom.Rectangle2D;
 
-public class InfoBoard extends JComponent implements MouseListener, MouseMotionListener {
+public class InfoPage extends JComponent implements MouseListener, MouseMotionListener {
 
     private static final String TEXT_LINE_1 = "SPACE to start/pause the game";
     private static final String TEXT_LINE_2 = "A to move left, D to move right";
@@ -19,8 +19,8 @@ public class InfoBoard extends JComponent implements MouseListener, MouseMotionL
     private Rectangle menuFace;
     private Rectangle backButton;
 
-    private final BasicStroke borderStroke = new BasicStroke(HomeMenu.BORDER_SIZE,BasicStroke.CAP_ROUND,BasicStroke.JOIN_ROUND,0,HomeMenu.DASHES,0);
-    private final BasicStroke borderStroke_noDashes = new BasicStroke(HomeMenu.BORDER_SIZE,BasicStroke.CAP_ROUND,BasicStroke.JOIN_ROUND);
+    private final BasicStroke borderStroke = new BasicStroke(MenuPage.BORDER_SIZE,BasicStroke.CAP_ROUND,BasicStroke.JOIN_ROUND,0, MenuPage.DASHES,0);
+    private final BasicStroke borderStroke_noDashes = new BasicStroke(MenuPage.BORDER_SIZE,BasicStroke.CAP_ROUND,BasicStroke.JOIN_ROUND);
 
     private Font greetingsFont;
     private Font gameTitleFont;
@@ -34,7 +34,7 @@ public class InfoBoard extends JComponent implements MouseListener, MouseMotionL
     private static final Image backgroundImage = Toolkit.getDefaultToolkit().getImage("src/main/resources/com/amsyar/textures/Menu Background.jpg");
 
 
-    public InfoBoard(GameFrame owner,Dimension area) {
+    public InfoPage(GameFrame owner, Dimension area) {
 
         this.setFocusable(true);
         this.requestFocusInWindow();
@@ -97,17 +97,17 @@ public class InfoBoard extends JComponent implements MouseListener, MouseMotionL
 
         Color prev = g2d.getColor();
 
-        g2d.setColor(HomeMenu.BG_COLOR);
+        g2d.setColor(MenuPage.BG_COLOR);
         g2d.fill(menuFace);
 
         Stroke tmp = g2d.getStroke();
 
         g2d.setStroke(borderStroke_noDashes);
-        g2d.setColor(HomeMenu.DASH_BORDER_COLOR);
+        g2d.setColor(MenuPage.DASH_BORDER_COLOR);
         g2d.draw(menuFace);
 
         g2d.setStroke(borderStroke);
-        g2d.setColor(HomeMenu.BORDER_COLOR);
+        g2d.setColor(MenuPage.BORDER_COLOR);
         g2d.draw(menuFace);
 
         g2d.setStroke(tmp);
@@ -118,7 +118,7 @@ public class InfoBoard extends JComponent implements MouseListener, MouseMotionL
 
     private void drawText(Graphics2D g2d) {
 
-        g2d.setColor(HomeMenu.TEXT_COLOR);
+        g2d.setColor(MenuPage.TEXT_COLOR);
 
         FontRenderContext frc = g2d.getFontRenderContext();
 
@@ -176,9 +176,9 @@ public class InfoBoard extends JComponent implements MouseListener, MouseMotionL
         if (backClicked) {
 
             Color tmp = g2d.getColor();
-            g2d.setColor(HomeMenu.CLICKED_BUTTON_COLOR);
+            g2d.setColor(MenuPage.CLICKED_BUTTON_COLOR);
             g2d.draw(backButton);
-            g2d.setColor(HomeMenu.CLICKED_TEXT);
+            g2d.setColor(MenuPage.CLICKED_TEXT);
             g2d.drawString(BACK_TEXT,x,y);
             g2d.setColor(tmp);
 
