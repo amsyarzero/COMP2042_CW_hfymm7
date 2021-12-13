@@ -22,6 +22,10 @@ import java.awt.*;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 
+/**
+ * edited by amsyarzero
+ * 13/12/2021
+ */
 public class DebugConsole extends JDialog implements WindowListener{
 
     private static final String TITLE = "Debug Console";
@@ -31,6 +35,13 @@ public class DebugConsole extends JDialog implements WindowListener{
     private GameBoard gameBoard;
     private Wall wall;
 
+    /**
+     * @param owner
+     * @param wall
+     * @param ball
+     * @param gameBoard
+     * defines attribute of debug console
+     */
     public DebugConsole(JFrame owner, Wall wall, Ball ball, GameBoard gameBoard){
 
         this.wall = wall;
@@ -45,6 +56,9 @@ public class DebugConsole extends JDialog implements WindowListener{
         this.pack();
     }
 
+    /**
+     * initializes the debug console with these settings
+     */
     private void initialize() {
 
         this.setModal(true);
@@ -57,6 +71,9 @@ public class DebugConsole extends JDialog implements WindowListener{
     }
 
 
+    /**
+     * sets location of debug console to the exact middle
+     */
     private void setLocation() {
 
         int x = ((owner.getWidth() - this.getWidth()) / 2) + owner.getX();
@@ -65,31 +82,51 @@ public class DebugConsole extends JDialog implements WindowListener{
 
     }
 
+    /**
+     * @param windowEvent
+     */
     @Override
     public void windowOpened(WindowEvent windowEvent) {
 
     }
 
+    /**
+     * @param windowEvent
+     * shows the game in its current state after closing debug console
+     */
     @Override
     public void windowClosing(WindowEvent windowEvent) {
         gameBoard.repaint();
     }
 
+    /**
+     * @param windowEvent
+     */
     @Override
     public void windowClosed(WindowEvent windowEvent) {
 
     }
 
+    /**
+     * @param windowEvent
+     */
     @Override
     public void windowIconified(WindowEvent windowEvent) {
 
     }
 
+    /**
+     * @param windowEvent
+     */
     @Override
     public void windowDeiconified(WindowEvent windowEvent) {
 
     }
 
+    /**
+     * @param windowEvent
+     * opens debug console in the middle of the window, then gets needed attributes
+     */
     @Override
     public void windowActivated(WindowEvent windowEvent) {
 
@@ -100,6 +137,9 @@ public class DebugConsole extends JDialog implements WindowListener{
 
     }
 
+    /**
+     * @param windowEvent
+     */
     @Override
     public void windowDeactivated(WindowEvent windowEvent) {
 

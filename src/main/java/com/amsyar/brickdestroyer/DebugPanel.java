@@ -22,6 +22,10 @@ import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
+/**
+ * edited by amsyarzero
+ * 13/12/2021
+ */
 public class DebugPanel extends JPanel {
 
     private static final Color DEF_BKG = Color.WHITE;
@@ -35,6 +39,11 @@ public class DebugPanel extends JPanel {
     private Wall wall;
     private Ball ball;
 
+    /**
+     * @param wall
+     * @param ball
+     * defines the attributes of the debug console
+     */
     public DebugPanel(Wall wall, Ball ball) {
 
         this.wall = wall;
@@ -56,6 +65,9 @@ public class DebugPanel extends JPanel {
 
     }
 
+    /**
+     * sets background and layout of the panel
+     */
     private void initialize() {
 
         this.setBackground(DEF_BKG);
@@ -63,6 +75,12 @@ public class DebugPanel extends JPanel {
 
     }
 
+    /**
+     * @param title
+     * @param e
+     * @return
+     * creates a button at the specified position
+     */
     private JButton makeButton(String title, ActionListener e) {
 
         JButton out = new JButton(title);
@@ -72,6 +90,13 @@ public class DebugPanel extends JPanel {
 
     }
 
+    /**
+     * @param min
+     * @param max
+     * @param e
+     * @return
+     * creates sliders at specified positions
+     */
     private JSlider makeSlider(int min, int max, ChangeListener e) {
 
         JSlider out = new JSlider(min,max);
@@ -83,6 +108,11 @@ public class DebugPanel extends JPanel {
         return out;
     }
 
+    /**
+     * @param x
+     * @param y
+     * set ball's x and y velocity values with sliders
+     */
     public void setValues(int x,int y) {
 
         ballXSpeed.setValue(x);
