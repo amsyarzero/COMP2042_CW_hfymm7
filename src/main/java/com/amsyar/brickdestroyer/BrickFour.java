@@ -1,3 +1,20 @@
+/*
+ *  Brick Destroy - A simple Arcade video game
+ *   Copyright (C) 2021 amsyarzero
+ *
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 package com.amsyar.brickdestroyer;
 
 import java.awt.*;
@@ -5,6 +22,10 @@ import java.awt.geom.GeneralPath;
 import java.awt.geom.Point2D;
 import java.util.Random;
 
+/**
+ * edited by amsyarzero
+ * 13/12/2021
+ */
 public class BrickFour extends Brick {
 
     private static final String NAME = "Brick of Hell";
@@ -18,6 +39,11 @@ public class BrickFour extends Brick {
     private Crack crack;
     private Shape brickFace;
 
+    /**
+     * @param point
+     * @param shape
+     * sets the shape and attribute of "Brick of Hell"
+     */
     public BrickFour(Point point, Dimension shape) {
 
         super(NAME,point,shape,DEF_BORDER, DEF_INNER, HELL_STRENGTH);
@@ -27,11 +53,23 @@ public class BrickFour extends Brick {
 
     }
 
+    /**
+     * @param pos
+     * @param size
+     * @return
+     * returns brick size and position
+     */
     @Override
     protected Shape makeBrickFace(Point pos, Dimension size) {
         return new Rectangle(pos, size);
     }
 
+    /**
+     * @param point
+     * @param dir
+     * @return
+     * if brick is broken, then ball won't trigger impact on brick. else, it will crack the brick
+     */
     @Override
     public boolean trackForImpact(Point2D point, int dir) {
 
@@ -51,6 +89,11 @@ public class BrickFour extends Brick {
 
     }
 
+    /**
+     * @param point
+     * @param dir
+     * @return
+     */
     public boolean impact(Point2D point, int dir) {
 
         if(rnd.nextDouble() < TOUGH_PROBABILITY) {
@@ -75,11 +118,18 @@ public class BrickFour extends Brick {
         return true;
     }
 
+    /**
+     * @return
+     * gets brick shape
+     */
     @Override
     public Shape getBrick() {
         return brickFace;
     }
 
+    /**
+     * updates the brick, appending cracks onto it
+     */
     private void updateBrick() {
 
         if(!super.isBrickBroken()) {
@@ -92,6 +142,9 @@ public class BrickFour extends Brick {
 
     }
 
+    /**
+     * repairs the brick and deletes any existing cracks ONLY if the generated number is lower than REPAIR_PROBABILITY
+     */
     public void repair(){
 
         if(rnd.nextDouble() < REPAIR_PROBABILITY) {

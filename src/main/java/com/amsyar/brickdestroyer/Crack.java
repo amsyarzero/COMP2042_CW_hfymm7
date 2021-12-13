@@ -1,9 +1,30 @@
+/*
+ *  Brick Destroy - A simple Arcade video game
+ *   Copyright (C) 2021 amsyarzero
+ *
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 package com.amsyar.brickdestroyer;
 
 import java.awt.*;
 import java.awt.geom.GeneralPath;
 import java.awt.geom.Point2D;
 
+/**
+ * edited by amsyarzero
+ * 13/12/2021
+ */
 public class Crack {
 
     private static final int CRACK_SECTIONS = 3;
@@ -22,6 +43,12 @@ public class Crack {
     private Shape brickFace;
     private int steps;
 
+    /**
+     * @param crackDepth
+     * @param steps
+     * @param brickFace
+     * defines the attributes of cracks
+     */
     public Crack(int crackDepth, int steps, Shape brickFace) {
 
         crack = new GeneralPath();
@@ -31,14 +58,26 @@ public class Crack {
 
     }
 
+    /**
+     * @return
+     * returns crack shape
+     */
     public GeneralPath draw() {
         return crack;
     }
 
+    /**
+     * deletes the cracks on a brick
+     */
     public void reset() {
         crack.reset();
     }
 
+    /**
+     * @param point
+     * @param direction
+     * determines the direction of cracks to be drawn
+     */
     protected void makeCrack(Point2D point, int direction) {
 
         Rectangle bounds = brickFace.getBounds();
@@ -48,7 +87,7 @@ public class Crack {
         Point end = new Point();
 
 
-        switch(direction) {
+        switch (direction) {
 
             case LEFT:
                 start.setLocation(bounds.x + bounds.width, bounds.y);
@@ -82,6 +121,11 @@ public class Crack {
 
     }
 
+    /**
+     * @param start
+     * @param end
+     * determines the start and end points of cracks to be drawn
+     */
     protected void makeCrack(Point start, Point end) {
 
         GeneralPath path = new GeneralPath();
@@ -113,6 +157,11 @@ public class Crack {
 
     }
 
+    /**
+     * @param bound
+     * @return
+     * returns a random point within brick boundaries
+     */
     private int randomInBounds(int bound) {
 
         int n = (bound * 2) + 1;
@@ -120,6 +169,13 @@ public class Crack {
 
     }
 
+    /**
+     * @param i
+     * @param steps
+     * @param divisions
+     * @return
+     * returns true if it's in middle of brick
+     */
     private boolean inMiddle(int i,int steps,int divisions) {
 
         int low = (steps / divisions);
@@ -129,6 +185,11 @@ public class Crack {
 
     }
 
+    /**
+     * @param bound
+     * @param probability
+     * @return
+     */
     private int jumps(int bound,double probability) {
 
         if(Brick.rnd.nextDouble() > probability)
@@ -138,6 +199,13 @@ public class Crack {
 
     }
 
+    /**
+     * @param from
+     * @param to
+     * @param direction
+     * @return
+     * returns random x and y position
+     */
     private Point makeRandomPoint(Point from,Point to, int direction) {
 
         Point out = new Point();

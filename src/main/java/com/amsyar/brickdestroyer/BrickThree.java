@@ -1,6 +1,6 @@
 /*
  *  Brick Destroy - A simple Arcade video game
- *   Copyright (C) 2017  Filippo Ranza
+ *   Copyright (C) 2021 amsyarzero
  *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -21,6 +21,10 @@ import java.awt.*;
 import java.awt.geom.Point2D;
 import java.util.Random;
 
+/**
+ * edited by amsyarzero
+ * 13/12/2021
+ */
 public class BrickThree extends Brick {
 
     private static final String NAME = "Brick Three";
@@ -32,6 +36,11 @@ public class BrickThree extends Brick {
     private Random rnd;
     private Shape brickFace;
 
+    /**
+     * @param point
+     * @param size
+     * sets the shape and attribute of "Brick Three"
+     */
     public BrickThree(Point point, Dimension size) {
 
         super(NAME, point, size, DEF_BORDER, DEF_INNER, STEEL_STRENGTH);
@@ -40,11 +49,21 @@ public class BrickThree extends Brick {
 
     }
 
+    /**
+     * @param pos
+     * @param size
+     * @return
+     * returns brick size and position
+     */
     @Override
     protected Shape makeBrickFace(Point pos, Dimension size) {
         return new Rectangle(pos, size);
     }
 
+    /**
+     * @return
+     * gets brick shape
+     */
     @Override
     public Shape getBrick() {
         return brickFace;
@@ -60,6 +79,9 @@ public class BrickThree extends Brick {
 
     }
 
+    /**
+     * if brick is broken, then ball won't trigger impact on brick. else, it will crack the brick
+     */
     public void impact() {
 
         if(rnd.nextDouble() < STEEL_PROBABILITY) {
