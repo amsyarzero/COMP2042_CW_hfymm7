@@ -1,6 +1,6 @@
 /*
  *  Brick Destroy - A simple Arcade video game
- *   Copyright (C) 2017  Filippo Ranza
+ *   Copyright (C) 2021 amsyarzero
  *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -22,12 +22,9 @@ import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
-
-
 public class DebugPanel extends JPanel {
 
     private static final Color DEF_BKG = Color.WHITE;
-
 
     private JButton skipLevel;
     private JButton resetBalls;
@@ -38,7 +35,7 @@ public class DebugPanel extends JPanel {
     private Wall wall;
     private Ball ball;
 
-    public DebugPanel(Wall wall, Ball ball){
+    public DebugPanel(Wall wall, Ball ball) {
 
         this.wall = wall;
         this.ball = ball;
@@ -46,7 +43,7 @@ public class DebugPanel extends JPanel {
         initialize();
 
         skipLevel = makeButton("Skip Level",e -> wall.nextLevel());
-        resetBalls = makeButton("Reset Balls",e -> wall.resetBallCount());
+        resetBalls = makeButton("Reset Ball Count",e -> wall.resetBallCount());
 
         ballXSpeed = makeSlider(-4,4,e -> ball.setXSpeed(ballXSpeed.getValue()));
         ballYSpeed = makeSlider(-4,4,e -> ball.setYSpeed(ballYSpeed.getValue()));
@@ -59,29 +56,38 @@ public class DebugPanel extends JPanel {
 
     }
 
-    private void initialize(){
+    private void initialize() {
+
         this.setBackground(DEF_BKG);
         this.setLayout(new GridLayout(2,2));
+
     }
 
-    private JButton makeButton(String title, ActionListener e){
+    private JButton makeButton(String title, ActionListener e) {
+
         JButton out = new JButton(title);
         out.addActionListener(e);
-        return  out;
+
+        return out;
+
     }
 
-    private JSlider makeSlider(int min, int max, ChangeListener e){
+    private JSlider makeSlider(int min, int max, ChangeListener e) {
+
         JSlider out = new JSlider(min,max);
         out.setMajorTickSpacing(1);
         out.setSnapToTicks(true);
         out.setPaintTicks(true);
         out.addChangeListener(e);
+
         return out;
     }
 
-    public void setValues(int x,int y){
+    public void setValues(int x,int y) {
+
         ballXSpeed.setValue(x);
         ballYSpeed.setValue(y);
+
     }
 
 }

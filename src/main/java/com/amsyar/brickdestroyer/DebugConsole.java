@@ -1,6 +1,6 @@
 /*
  *  Brick Destroy - A simple Arcade video game
- *   Copyright (C) 2017  Filippo Ranza
+ *   Copyright (C) 2021 amsyarzero
  *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -26,43 +26,44 @@ public class DebugConsole extends JDialog implements WindowListener{
 
     private static final String TITLE = "Debug Console";
 
-
     private JFrame owner;
     private DebugPanel debugPanel;
     private GameBoard gameBoard;
     private Wall wall;
 
-
-    public DebugConsole(JFrame owner,Wall wall, Ball ball, GameBoard gameBoard){
+    public DebugConsole(JFrame owner, Wall wall, Ball ball, GameBoard gameBoard){
 
         this.wall = wall;
         this.owner = owner;
         this.gameBoard = gameBoard;
+
         initialize();
 
         debugPanel = new DebugPanel(wall, ball);
         this.add(debugPanel,BorderLayout.CENTER);
 
-
         this.pack();
     }
 
-    private void initialize(){
+    private void initialize() {
+
         this.setModal(true);
         this.setTitle(TITLE);
         this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         this.setLayout(new BorderLayout());
         this.addWindowListener(this);
         this.setFocusable(true);
+
     }
 
 
-    private void setLocation(){
+    private void setLocation() {
+
         int x = ((owner.getWidth() - this.getWidth()) / 2) + owner.getX();
         int y = ((owner.getHeight() - this.getHeight()) / 2) + owner.getY();
         this.setLocation(x,y);
-    }
 
+    }
 
     @Override
     public void windowOpened(WindowEvent windowEvent) {
@@ -91,9 +92,12 @@ public class DebugConsole extends JDialog implements WindowListener{
 
     @Override
     public void windowActivated(WindowEvent windowEvent) {
+
         setLocation();
         Ball b = wall.ball;
+
         debugPanel.setValues(b.getSpeedX(),b.getSpeedY());
+
     }
 
     @Override
