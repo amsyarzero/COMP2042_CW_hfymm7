@@ -19,7 +19,9 @@ package com.amsyar.brickdestroyer;
 
 import java.awt.*;
 import java.awt.geom.Point2D;
+import java.io.File;
 import java.util.Random;
+import java.util.Scanner;
 
 /**
  * edited by amsyarzero
@@ -28,6 +30,10 @@ import java.util.Random;
 public class Wall {
 
     private static final int LEVELS_COUNT = 5;
+
+    public int currentScore = 0;
+    public int highScore;
+    public int higherScore;
 
     private static final int CLAY = 1;
     private static final int CEMENT = 2;
@@ -442,6 +448,22 @@ public class Wall {
 
         return out;
 
+    }
+
+    /**
+     * gets high score from highscorelist.txt
+     */
+    public void getHighscore(){
+        File score = new File(this.getClass().getResource("/com/amsyar/brickdestroyer/highscorelist.txt").toString());
+
+        try{
+            Scanner scoreScan = new Scanner(score);
+            while (scoreScan.hasNextLine()){
+                higherScore = Integer.parseInt(scoreScan.nextLine());
+                highScore = Integer.parseInt(String.valueOf(higherScore));
+            }
+            scoreScan.close();
+        }catch(Exception e){ }
     }
 
 }

@@ -108,7 +108,7 @@ public class GameBoard extends JComponent implements KeyListener, MouseListener,
 
                 if(wall.hasLevel()) {
 
-                    message = "--PRESS SPACE TO CONTINUE--";
+                    message = "Current score: " + wall.currentScore + "\n High score: " + wall.highScore;
                     gameTimer.stop();
                     wall.ballReset();
                     wall.wallReset();
