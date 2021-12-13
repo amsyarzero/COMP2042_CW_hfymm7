@@ -95,15 +95,14 @@ public class BrickFour extends Brick {
     public void repair(){
 
         if(rnd.nextDouble() < REPAIR_PROBABILITY) {
-            repairBrick();
+
+            System.out.println("repaired");
+            super.repair();
+            crack.reset();
+            brickFace = super.brickFace;
+
         }
 
-    }
-
-    public void repairBrick() {
-        super.repair();
-        crack.reset();
-        brickFace = super.brickFace;
     }
 
 }
