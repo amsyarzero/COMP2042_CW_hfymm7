@@ -10,10 +10,10 @@ import java.awt.geom.Rectangle2D;
 
 public class InfoPage extends JComponent implements MouseListener, MouseMotionListener {
 
-    private static final String TEXT_LINE_1 = "SPACE to start/pause the game";
-    private static final String TEXT_LINE_2 = "A to move left, D to move right";
-    private static final String TEXT_LINE_3 = "ESC to open pause menu";
-    private static final String TEXT_LINE_4 = "F1 to open debug panel";
+    private static final String INFO_LINE_1 = "SPACE to start/pause the game";
+    private static final String INFO_LINE_2 = "A to move left, D to move right";
+    private static final String INFO_LINE_3 = "ESC to open pause menu";
+    private static final String INFO_LINE_4 = "F1 to open debug panel";
     private static final String BACK_TEXT = "Back";
 
     private Rectangle menuFace;
@@ -22,9 +22,10 @@ public class InfoPage extends JComponent implements MouseListener, MouseMotionLi
     private final BasicStroke borderStroke = new BasicStroke(MenuPage.BORDER_SIZE,BasicStroke.CAP_ROUND,BasicStroke.JOIN_ROUND,0, MenuPage.DASHES,0);
     private final BasicStroke borderStroke_noDashes = new BasicStroke(MenuPage.BORDER_SIZE,BasicStroke.CAP_ROUND,BasicStroke.JOIN_ROUND);
 
-    private Font greetingsFont;
-    private Font gameTitleFont;
-    private Font creditsFont;
+    private Font infoFirstFont;
+    private Font infoSecondFont;
+    private Font infoThirdFont;
+    private Font infoFourthFont;
     private Font buttonFont;
 
     private GameFrame owner;
@@ -50,9 +51,10 @@ public class InfoPage extends JComponent implements MouseListener, MouseMotionLi
         Dimension btnDim = new Dimension(area.width / 3, area.height / 12);
         backButton = new Rectangle(btnDim);
 
-        greetingsFont = new Font("Noto Mono",Font.BOLD,25);
-        gameTitleFont = new Font("Noto Mono",Font.BOLD,25);
-        creditsFont = new Font("Noto Mono",Font.BOLD,25);
+        infoFirstFont = new Font("Noto Mono",Font.BOLD,25);
+        infoSecondFont = new Font("Noto Mono",Font.BOLD,25);
+        infoThirdFont = new Font("Noto Mono",Font.BOLD,25);
+        infoFourthFont = new Font("Noto Mono",Font.BOLD,25);
         buttonFont = new Font("Monospaced",Font.PLAIN,backButton.height-2);
 
     }
@@ -122,35 +124,36 @@ public class InfoPage extends JComponent implements MouseListener, MouseMotionLi
 
         FontRenderContext frc = g2d.getFontRenderContext();
 
-        Rectangle2D greetingsRect = greetingsFont.getStringBounds(TEXT_LINE_1,frc);
-        Rectangle2D gameTitleRect = gameTitleFont.getStringBounds(TEXT_LINE_2,frc);
-        Rectangle2D creditsRect = creditsFont.getStringBounds(TEXT_LINE_3,frc);
+        Rectangle2D infoFirstRect = infoFirstFont.getStringBounds(INFO_LINE_1,frc);
+        Rectangle2D infoSecondRect = infoSecondFont.getStringBounds(INFO_LINE_2,frc);
+        Rectangle2D infoThirdRect = infoThirdFont.getStringBounds(INFO_LINE_3,frc);
+        Rectangle2D infoFourthRect = infoThirdFont.getStringBounds(INFO_LINE_4,frc);
 
         int sX,sY;
 
-        sX = (int)(menuFace.getWidth() - greetingsRect.getWidth()) / 2;
+        sX = (int)(menuFace.getWidth() - infoFirstRect.getWidth()) / 2;
         sY = (int)(menuFace.getHeight() / 4);
 
-        g2d.setFont(greetingsFont);
-        g2d.drawString(TEXT_LINE_1,sX,sY);
+        g2d.setFont(infoFirstFont);
+        g2d.drawString(INFO_LINE_1,sX,sY);
 
-        sX = (int)(menuFace.getWidth() - gameTitleRect.getWidth()) / 2;
-        sY += (int) gameTitleRect.getHeight() * 1.1;//add 10% of String height between the two strings
+        sX = (int)(menuFace.getWidth() - infoSecondRect.getWidth()) / 2;
+        sY += (int) infoSecondRect.getHeight() * 1.1;//add 10% of String height between the two strings
 
-        g2d.setFont(gameTitleFont);
-        g2d.drawString(TEXT_LINE_2,sX,sY);
+        g2d.setFont(infoSecondFont);
+        g2d.drawString(INFO_LINE_2,sX,sY);
 
-        sX = (int)(menuFace.getWidth() - creditsRect.getWidth()) / 2;
-        sY += (int) creditsRect.getHeight() * 1.1;
+        sX = (int)(menuFace.getWidth() - infoThirdRect.getWidth()) / 2;
+        sY += (int) infoThirdRect.getHeight() * 1.1;
 
-        g2d.setFont(creditsFont);
-        g2d.drawString(TEXT_LINE_3,sX,sY);
+        g2d.setFont(infoThirdFont);
+        g2d.drawString(INFO_LINE_3,sX,sY);
 
-        sX = (int)(menuFace.getWidth() - creditsRect.getWidth()) / 2;
-        sY += (int) creditsRect.getHeight() * 1.1;
+        sX = (int)(menuFace.getWidth() - infoFourthRect.getWidth()) / 2;
+        sY += (int) infoFourthRect.getHeight() * 1.1;
 
-        g2d.setFont(creditsFont);
-        g2d.drawString(TEXT_LINE_4,sX,sY);
+        g2d.setFont(infoFourthFont);
+        g2d.drawString(INFO_LINE_4,sX,sY);
 
     }
 
