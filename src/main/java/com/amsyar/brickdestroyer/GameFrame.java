@@ -1,6 +1,6 @@
 /*
  *  Brick Destroy - A simple Arcade video game
- *   Copyright (C) 2017  Filippo Ranza
+ *   Copyright (C) 2021 amsyarzero
  *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -22,7 +22,6 @@ import java.awt.*;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowFocusListener;
 
-
 public class GameFrame extends JFrame implements WindowFocusListener {
 
     private static final String DEF_TITLE = "Brick Destroy";
@@ -33,7 +32,8 @@ public class GameFrame extends JFrame implements WindowFocusListener {
 
     private boolean gaming;
 
-    public GameFrame(){
+    public GameFrame() {
+
         super();
 
         gaming = false;
@@ -49,15 +49,16 @@ public class GameFrame extends JFrame implements WindowFocusListener {
 
         this.setUndecorated(true);
 
-
     }
 
-    public void initialize(){
+    public void initialize() {
+
         this.setTitle(DEF_TITLE);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.pack();
         this.autoLocate();
         this.setVisible(true);
+
     }
 
     public void enableGameBoard() {
@@ -65,8 +66,9 @@ public class GameFrame extends JFrame implements WindowFocusListener {
         this.dispose();
         this.remove(menuPage);
         this.add(gameBoard, BorderLayout.CENTER);
-        this.setUndecorated(false);
+        this.setUndecorated(true);
         initialize();
+
         /*to avoid problems with graphics focus controller is added here*/
         this.addWindowFocusListener(this);
         this.addKeyListener(gameBoard);
@@ -93,11 +95,13 @@ public class GameFrame extends JFrame implements WindowFocusListener {
 
     }
 
-    private void autoLocate(){
+    private void autoLocate() {
+
         Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
         int x = (size.width - this.getWidth()) / 2;
         int y = (size.height - this.getHeight()) / 2;
         this.setLocation(x,y);
+
     }
 
 
@@ -116,6 +120,7 @@ public class GameFrame extends JFrame implements WindowFocusListener {
 
     @Override
     public void windowLostFocus(WindowEvent windowEvent) {
+
         if(gaming)
             gameBoard.onLostFocus();
 
