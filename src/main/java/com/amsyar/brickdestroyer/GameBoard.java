@@ -74,7 +74,7 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
         message = "";
         wall = new Wall(new Rectangle(0,0,DEF_WIDTH,DEF_HEIGHT),30,3,6/2,new Point(300,430));
 
-        debugConsole = new DebugConsole(owner,wall,this);
+        debugConsole = new DebugConsole(owner,wall, wall.ball,this);
         //initialize the first level
         wall.nextLevel();
 
