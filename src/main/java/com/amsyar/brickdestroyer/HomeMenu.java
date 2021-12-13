@@ -28,21 +28,21 @@ import java.awt.geom.Rectangle2D;
 
 public class HomeMenu extends JComponent implements MouseListener, MouseMotionListener {
 
-    private static final String GREETINGS = "Welcome to:";
+    private static final String GREETINGS = "Welcome to";
     private static final String GAME_TITLE = "Brick Destroy";
     private static final String CREDITS = "Peaceful Version ;)";
     private static final String START_TEXT = "Start";
     private static final String INFO_TEXT = "Info";
     private static final String EXIT_TEXT = "Exit";
 
-    private static final Color BG_COLOR = new Color(0, 0, 0 ,0);
-    private static final Color BORDER_COLOR = new Color(200,8,21); //Venetian Red
-    private static final Color DASH_BORDER_COLOR = new  Color(255, 216, 0);//school bus yellow
-    private static final Color TEXT_COLOR = new Color(16, 52, 166);//egyptian blue
-    private static final Color CLICKED_BUTTON_COLOR = BG_COLOR.brighter();
-    private static final Color CLICKED_TEXT = Color.WHITE;
-    private static final int BORDER_SIZE = 5;
-    private static final float[] DASHES = {12,6};
+    public static final Color BG_COLOR = new Color(0, 0, 0 ,0);
+    public static final Color BORDER_COLOR = new Color(19, 18, 18);
+    public static final Color DASH_BORDER_COLOR = new  Color(54, 54, 54);
+    public static final Color TEXT_COLOR = new Color(25, 98, 24);
+    public static final Color CLICKED_BUTTON_COLOR = BG_COLOR.brighter();
+    public static final Color CLICKED_TEXT = Color.WHITE;
+    public static final int BORDER_SIZE = 10;
+    public static final float[] DASHES = {12,6};
 
     private Rectangle menuFace;
     private Rectangle startButton;
@@ -63,7 +63,7 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
     private boolean infoClicked;
     private boolean exitClicked;
 
-    private static final Image backgroundImage = Toolkit.getDefaultToolkit().getImage("src/main/resources/com/amsyar/textures/Menu Background.jpg");
+    private final Image backgroundImage = Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("/com/amsyar/textures/Menu Background.jpg"));
 
 
     public HomeMenu(GameFrame owner,Dimension area) {
@@ -95,7 +95,7 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
     }
 
 
-    public void paint(Graphics g){
+    public void paint(Graphics g) {
         drawMenu((Graphics2D)g);
     }
 
@@ -195,6 +195,8 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
         int x = (menuFace.width - startButton.width) / 2;
         int y =(int) ((menuFace.height - startButton.height) * 0.8);
 
+
+        // draw start button (renamed to info)
         startButton.setLocation(x,y);
 
         x = (int)(startButton.getWidth() - txtRect.getWidth()) / 2;
@@ -221,10 +223,9 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
 
         y *= 1.2;
 
+
+        // draw exit button
         exitButton.setLocation(x,y);
-
-
-
 
         x = (int)(exitButton.getWidth() - mTxtRect.getWidth()) / 2;
         y = (int)(exitButton.getHeight() - mTxtRect.getHeight()) / 2;
@@ -251,10 +252,9 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
 
         y *= 0.8;
 
+
+        // draw info button
         infoButton.setLocation(x,y);
-
-
-
 
         x = (int)(infoButton.getWidth() - mTxtRect.getWidth()) / 2;
         y = (int)(infoButton.getHeight() - mTxtRect.getHeight()) / 2;

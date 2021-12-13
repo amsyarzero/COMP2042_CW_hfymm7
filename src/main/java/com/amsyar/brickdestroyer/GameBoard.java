@@ -56,6 +56,8 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
 
     private DebugConsole debugConsole;
 
+    private final ImageIcon favicon = new ImageIcon(this.getClass().getResource("/com/amsyar/textures/App Icon.png"));
+
 
     public GameBoard(JFrame owner){
         super();
@@ -63,7 +65,7 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
         strLen = 0;
         showPauseMenu = false;
 
-
+        owner.setIconImage(favicon.getImage());
 
         menuFont = new Font("Monospaced",Font.PLAIN,TEXT_SIZE);
 

@@ -10,25 +10,17 @@ import java.awt.geom.Rectangle2D;
 
 public class InfoBoard extends JComponent implements MouseListener, MouseMotionListener {
 
-    private static final String GREETINGS = "Welcome to:";
-    private static final String GAME_TITLE = "Brick Destroy";
-    private static final String CREDITS = "Peaceful Version ;)";
+    private static final String TEXT_LINE_1 = "SPACE to start/pause the game";
+    private static final String TEXT_LINE_2 = "A to move left, D to move right";
+    private static final String TEXT_LINE_3 = "ESC to open pause menu";
+    private static final String TEXT_LINE_4 = "F1 to open debug panel";
     private static final String BACK_TEXT = "Back";
-
-    private static final Color BG_COLOR = new Color(0, 0, 0 ,0);
-    private static final Color BORDER_COLOR = new Color(200,8,21); //Venetian Red
-    private static final Color DASH_BORDER_COLOR = new  Color(255, 216, 0);//school bus yellow
-    private static final Color TEXT_COLOR = new Color(16, 52, 166);//egyptian blue
-    private static final Color CLICKED_BUTTON_COLOR = BG_COLOR.brighter();
-    private static final Color CLICKED_TEXT = Color.WHITE;
-    private static final int BORDER_SIZE = 5;
-    private static final float[] DASHES = {12,6};
 
     private Rectangle menuFace;
     private Rectangle backButton;
 
-    private BasicStroke borderStroke;
-    private BasicStroke borderStroke_noDashes;
+    private final BasicStroke borderStroke = new BasicStroke(HomeMenu.BORDER_SIZE,BasicStroke.CAP_ROUND,BasicStroke.JOIN_ROUND,0,HomeMenu.DASHES,0);
+    private final BasicStroke borderStroke_noDashes = new BasicStroke(HomeMenu.BORDER_SIZE,BasicStroke.CAP_ROUND,BasicStroke.JOIN_ROUND);
 
     private Font greetingsFont;
     private Font gameTitleFont;
@@ -58,12 +50,9 @@ public class InfoBoard extends JComponent implements MouseListener, MouseMotionL
         Dimension btnDim = new Dimension(area.width / 3, area.height / 12);
         backButton = new Rectangle(btnDim);
 
-        borderStroke = new BasicStroke(BORDER_SIZE,BasicStroke.CAP_ROUND,BasicStroke.JOIN_ROUND,0,DASHES,0);
-        borderStroke_noDashes = new BasicStroke(BORDER_SIZE,BasicStroke.CAP_ROUND,BasicStroke.JOIN_ROUND);
-
-        greetingsFont = new Font("Noto Mono",Font.PLAIN,25);
-        gameTitleFont = new Font("Noto Mono",Font.BOLD,40);
-        creditsFont = new Font("Monospaced",Font.PLAIN,10);
+        greetingsFont = new Font("Noto Mono",Font.BOLD,25);
+        gameTitleFont = new Font("Noto Mono",Font.BOLD,25);
+        creditsFont = new Font("Noto Mono",Font.BOLD,25);
         buttonFont = new Font("Monospaced",Font.PLAIN,backButton.height-2);
 
     }
@@ -108,17 +97,17 @@ public class InfoBoard extends JComponent implements MouseListener, MouseMotionL
 
         Color prev = g2d.getColor();
 
-        g2d.setColor(BG_COLOR);
+        g2d.setColor(HomeMenu.BG_COLOR);
         g2d.fill(menuFace);
 
         Stroke tmp = g2d.getStroke();
 
         g2d.setStroke(borderStroke_noDashes);
-        g2d.setColor(DASH_BORDER_COLOR);
+        g2d.setColor(HomeMenu.DASH_BORDER_COLOR);
         g2d.draw(menuFace);
 
         g2d.setStroke(borderStroke);
-        g2d.setColor(BORDER_COLOR);
+        g2d.setColor(HomeMenu.BORDER_COLOR);
         g2d.draw(menuFace);
 
         g2d.setStroke(tmp);
@@ -129,13 +118,13 @@ public class InfoBoard extends JComponent implements MouseListener, MouseMotionL
 
     private void drawText(Graphics2D g2d) {
 
-        g2d.setColor(TEXT_COLOR);
+        g2d.setColor(HomeMenu.TEXT_COLOR);
 
         FontRenderContext frc = g2d.getFontRenderContext();
 
-        Rectangle2D greetingsRect = greetingsFont.getStringBounds(GREETINGS,frc);
-        Rectangle2D gameTitleRect = gameTitleFont.getStringBounds(GAME_TITLE,frc);
-        Rectangle2D creditsRect = creditsFont.getStringBounds(CREDITS,frc);
+        Rectangle2D greetingsRect = greetingsFont.getStringBounds(TEXT_LINE_1,frc);
+        Rectangle2D gameTitleRect = gameTitleFont.getStringBounds(TEXT_LINE_2,frc);
+        Rectangle2D creditsRect = creditsFont.getStringBounds(TEXT_LINE_3,frc);
 
         int sX,sY;
 
@@ -143,19 +132,25 @@ public class InfoBoard extends JComponent implements MouseListener, MouseMotionL
         sY = (int)(menuFace.getHeight() / 4);
 
         g2d.setFont(greetingsFont);
-        g2d.drawString(GREETINGS,sX,sY);
+        g2d.drawString(TEXT_LINE_1,sX,sY);
 
         sX = (int)(menuFace.getWidth() - gameTitleRect.getWidth()) / 2;
         sY += (int) gameTitleRect.getHeight() * 1.1;//add 10% of String height between the two strings
 
         g2d.setFont(gameTitleFont);
-        g2d.drawString(GAME_TITLE,sX,sY);
+        g2d.drawString(TEXT_LINE_2,sX,sY);
 
         sX = (int)(menuFace.getWidth() - creditsRect.getWidth()) / 2;
         sY += (int) creditsRect.getHeight() * 1.1;
 
         g2d.setFont(creditsFont);
-        g2d.drawString(CREDITS,sX,sY);
+        g2d.drawString(TEXT_LINE_3,sX,sY);
+
+        sX = (int)(menuFace.getWidth() - creditsRect.getWidth()) / 2;
+        sY += (int) creditsRect.getHeight() * 1.1;
+
+        g2d.setFont(creditsFont);
+        g2d.drawString(TEXT_LINE_4,sX,sY);
 
     }
 
@@ -181,9 +176,9 @@ public class InfoBoard extends JComponent implements MouseListener, MouseMotionL
         if (backClicked) {
 
             Color tmp = g2d.getColor();
-            g2d.setColor(CLICKED_BUTTON_COLOR);
+            g2d.setColor(HomeMenu.CLICKED_BUTTON_COLOR);
             g2d.draw(backButton);
-            g2d.setColor(CLICKED_TEXT);
+            g2d.setColor(HomeMenu.CLICKED_TEXT);
             g2d.drawString(BACK_TEXT,x,y);
             g2d.setColor(tmp);
 
